@@ -1,13 +1,12 @@
-module Lib where
+module Lib (runOnFiles, runOnFile) where
 
-import Grammar
 import Parse
-import Pos
 import qualified TrackDefinitions
 
 runOnFiles :: [String] -> IO ()
 runOnFiles = mapM_ runOnFile
 
+unwrap :: Either String a -> a
 unwrap (Left err) = error err
 unwrap (Right x) = x
 
