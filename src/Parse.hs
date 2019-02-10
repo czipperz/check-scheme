@@ -78,4 +78,3 @@ list = do
                   char ')' <?> "end of list"
                   return [expr]
             endOfList <|> (fmap (expr:) listBody)
-

@@ -14,7 +14,8 @@ data MessageValue = UnboundVariable String
 -- | Analyze a Program to track definitions and where there are
 -- undefined functions used.
 run :: Program -> [Message]
-run = flip evalState [("+", BoundFunction 0 Nothing)] . analyzeProgram
+run = flip evalState [("+", BoundFunction 1 Nothing),
+                      ("-", BoundFunction 1 Nothing)] . analyzeProgram
 
 type Binding = (String, BindingValue)
 data BindingValue = BoundVariable

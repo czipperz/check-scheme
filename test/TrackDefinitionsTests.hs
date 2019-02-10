@@ -22,7 +22,10 @@ trackDefinitionsTests = [trackDefinitions_NoDefinitionsNoUsages,
                          trackDefinitions_LetBindsWithLambdaCorrect,
                          trackDefinitions_LetBindsAnotherVariableWrong,
                          trackDefinitions_LetBindsAnotherVariableCorrect,
-                         trackDefinitions_PlusDefined]
+                         trackDefinitions_PlusDefined,
+                         trackDefinitions_PlusDefinedNoArguments,
+                         trackDefinitions_PlusDefinedOneArgument,
+                         trackDefinitions_PlusDefinedManyArguments]
 
 unwrap :: Either String a -> a
 unwrap (Left err) = error err
@@ -84,7 +87,10 @@ trackDefinitions_PlusDefined =
     [] "(+ 1 3)"
 trackDefinitions_PlusDefinedNoArguments =
   assertTrackDefinitionsEq "trackDefinitions_PlusDefinedNoArguments"
-    [] "(+)"
+    [tag 1 1 $ WrongNumberOfArguments "+" 0] "(+)"
+trackDefinitions_PlusDefinedOneArgument =
+  assertTrackDefinitionsEq "trackDefinitions_PlusDefinedOneArgument"
+    [] "(+ 1)"
 trackDefinitions_PlusDefinedManyArguments =
   assertTrackDefinitionsEq "trackDefinitions_PlusDefinedManyArguments"
     [] "(+ 1 2 3 4 5 6 7 8)"
